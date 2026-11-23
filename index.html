@@ -474,28 +474,31 @@
         </div>
 
         <!-- 선택일 추가 수당 & 상품권 조절 (항목별 소프트 컬러 톤 적용) -->
-        <div class="text-xs font-extrabold text-slate-600 mb-2">➕ 선택일 추가 수당 &amp; 상품권 (조출·잔업 시 시각 자동변동)</div>
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <div class="text-xs font-extrabold text-slate-600">➕ 선택일 추가 수당 &amp; 상품권 (조출·잔업 시 시각 자동변동)</div>
+          <button type="button" id="btn-toggle-special" onclick="toggleSpecialRow()" class="tap-btn shrink-0 bg-slate-600 text-white rounded-lg px-2 py-1 text-[10.5px] font-extrabold">특별근로 숨김</button>
+        </div>
         <div class="space-y-1.5">
-          <div class="flex items-center justify-between bg-[#c8dcec] border border-[#a8c8e0] rounded-xl px-3 py-2">
-            <div class="pay-row-label text-xs font-extrabold">1. 조출 <span id="val-early" class="pay-row-val text-sky-700 ml-1 tabular-nums">0h</span></div>
+          <div id="row-early" class="flex items-center justify-between bg-[#f8d4e4] border border-[#eba8c6] rounded-xl px-3 py-2">
+            <div class="pay-row-label text-xs font-extrabold">1. 조출하쟈~ <span id="val-early" class="pay-row-val text-pink-700 ml-1 tabular-nums"></span></div>
             <div class="flex gap-1">
-              <button type="button" onclick="adjustField('early', 1)" class="tap-btn bg-sky-600 text-white rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+1h</button>
-              <button type="button" onclick="adjustField('early', 0.5)" class="tap-btn bg-sky-100 text-sky-800 rounded-lg px-2 py-1.5 text-[11px] font-extrabold">+30m</button>
-              <button type="button" onclick="adjustField('early', -0.5)" class="tap-btn bg-white border border-sky-200 text-slate-700 rounded-lg px-2 py-1.5 text-[11px] font-extrabold">-30m</button>
+              <button type="button" onclick="adjustField('early', 1)" class="tap-btn bg-pink-500 text-white rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+1h</button>
+              <button type="button" onclick="adjustField('early', 0.5)" class="tap-btn bg-pink-100 text-pink-800 rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+30m</button>
+              <button type="button" onclick="adjustField('early', -0.5)" class="tap-btn bg-white border border-pink-200 text-slate-700 rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">-30m</button>
             </div>
           </div>
 
-          <div class="flex items-center justify-between bg-[#c8d4ec] border border-[#a8bce0] rounded-xl px-3 py-2">
-            <div class="pay-row-label text-xs font-extrabold">2. 잔업 <span id="val-overtime" class="pay-row-val text-blue-700 ml-1 tabular-nums">0h</span></div>
+          <div id="row-overtime" class="flex items-center justify-between bg-[#c8e8fa] border border-[#8fd0f4] rounded-xl px-3 py-2">
+            <div class="pay-row-label text-xs font-extrabold">2. 잔업하쟈~ <span id="val-overtime" class="pay-row-val text-sky-700 ml-1 tabular-nums"></span></div>
             <div class="flex gap-1">
-              <button type="button" onclick="adjustField('overtime', 1)" class="tap-btn bg-blue-600 text-white rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+1h</button>
-              <button type="button" onclick="adjustField('overtime', 0.5)" class="tap-btn bg-blue-100 text-blue-800 rounded-lg px-2 py-1.5 text-[11px] font-extrabold">+30m</button>
-              <button type="button" onclick="adjustField('overtime', -0.5)" class="tap-btn bg-white border border-blue-200 text-slate-700 rounded-lg px-2 py-1.5 text-[11px] font-extrabold">-30m</button>
+              <button type="button" onclick="adjustField('overtime', 1)" class="tap-btn bg-sky-500 text-white rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+1h</button>
+              <button type="button" onclick="adjustField('overtime', 0.5)" class="tap-btn bg-sky-100 text-sky-800 rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+30m</button>
+              <button type="button" onclick="adjustField('overtime', -0.5)" class="tap-btn bg-white border border-sky-200 text-slate-700 rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">-30m</button>
             </div>
           </div>
 
-          <div class="flex items-center justify-between bg-[#d4d0e8] border border-[#b8b0d8] rounded-xl px-3 py-2">
-            <div class="pay-row-label text-xs font-extrabold">3. 야간 <span id="val-night" class="pay-row-val text-indigo-700 ml-1 tabular-nums">0h (0원)</span></div>
+          <div id="row-night" class="hidden items-center justify-between bg-[#d4d0e8] border border-[#b8b0d8] rounded-xl px-3 py-2">
+            <div class="pay-row-label text-xs font-extrabold">3. 야간 <span id="val-night" class="pay-row-val text-indigo-700 ml-1 tabular-nums"></span></div>
             <div class="flex gap-1">
               <button type="button" onclick="adjustField('night', 1)" class="tap-btn bg-[#1a2332] text-white rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+1h</button>
               <button type="button" onclick="adjustField('night', 0.5)" class="tap-btn bg-indigo-100 text-indigo-800 rounded-lg px-2 py-1.5 text-[11px] font-extrabold">+30m</button>
@@ -503,8 +506,8 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-between bg-[#ecc8d0] border border-[#e0a8b4] rounded-xl px-3 py-2">
-            <div class="pay-row-label text-xs font-extrabold">4. 휴연 <span id="val-holiday" class="pay-row-val text-rose-600 ml-1 tabular-nums">0h</span></div>
+          <div id="row-holiday" class="hidden items-center justify-between bg-[#ecc8d0] border border-[#e0a8b4] rounded-xl px-3 py-2">
+            <div class="pay-row-label text-xs font-extrabold">4. 휴연 <span id="val-holiday" class="pay-row-val text-rose-600 ml-1 tabular-nums"></span></div>
             <div class="flex gap-1">
               <button type="button" onclick="adjustField('holiday', 1)" class="tap-btn bg-rose-600 text-white rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+1h</button>
               <button type="button" onclick="adjustField('holiday', 0.5)" class="tap-btn bg-rose-100 text-rose-800 rounded-lg px-2 py-1.5 text-[11px] font-extrabold">+30m</button>
@@ -512,8 +515,8 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-between bg-[#c4e4d4] border border-[#a0d0b8] rounded-xl px-3 py-2">
-            <div class="pay-row-label text-xs font-extrabold">5. 특별근로 <span id="val-special" class="pay-row-val text-emerald-700 ml-1 tabular-nums">0h (0원)</span></div>
+          <div id="row-special" class="flex items-center justify-between bg-[#c4e4d4] border border-[#a0d0b8] rounded-xl px-3 py-2">
+            <div class="pay-row-label text-xs font-extrabold">3. 특별근로 <span id="val-special" class="pay-row-val text-emerald-700 ml-1 tabular-nums"></span></div>
             <div class="flex gap-1">
               <button type="button" onclick="adjustField('special', 1)" class="tap-btn bg-emerald-600 text-white rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+1h</button>
               <button type="button" onclick="adjustField('special', 0.5)" class="tap-btn bg-emerald-100 text-emerald-800 rounded-lg px-2 py-1.5 text-[11px] font-extrabold">+30m</button>
@@ -522,7 +525,7 @@
           </div>
 
           <div class="flex items-center justify-between bg-[#f0e4c0] border border-[#e0d0a0] rounded-xl px-3 py-2">
-            <div class="text-xs font-extrabold pay-row-label text-amber-950 font-extrabold">6. 상품권 <span id="val-voucher" class="pay-row-val text-amber-600 ml-1 tabular-nums">0원</span></div>
+            <div class="text-xs font-extrabold pay-row-label text-amber-950 font-extrabold">4. 상품권 <span id="val-voucher" class="pay-row-val text-amber-600 ml-1 tabular-nums"></span></div>
             <div class="flex gap-1">
               <button type="button" onclick="adjustVoucher(50000)" class="tap-btn bg-amber-500 text-white rounded-lg px-2.5 py-1.5 text-[11px] font-extrabold">+5만원</button>
               <button type="button" onclick="adjustVoucher(100000)" class="tap-btn bg-amber-100 text-amber-900 rounded-lg px-2 py-1.5 text-[11px] font-extrabold">+10만원</button>
@@ -827,6 +830,10 @@
           <p class="text-[11px] text-slate-500 mb-3 leading-relaxed">
             초기 기본값은 모두 <strong>0원</strong>입니다. 한 번 저장하면 이 기기에 계속 유지되며, 본인이 다시 바꿀 때만 변경됩니다. (매년 인상 시 여기만 수정)
           </p>
+          <div class="grid grid-cols-2 gap-2 mb-3">
+            <button type="button" id="btn-copy-cfg" onclick="copySalaryConfig()" class="tap-btn py-2 px-2.5 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-extrabold">📋 모두 복사</button>
+            <button type="button" id="btn-paste-cfg" onclick="pasteSalaryConfig()" class="tap-btn py-2 px-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-extrabold">📥 붙여넣기 적용</button>
+          </div>
           <div class="space-y-2.5">
             <label class="block">
               <span class="block text-xs font-bold text-slate-600 mb-1">표시 직군 / 이름 태그 (선택)</span>
@@ -1787,6 +1794,28 @@
       showToast(`적용 완료! ${rec.start}~${rec.end} (조출 ${rec.early || 0}h · 잔업 ${rec.overtime || 0}h · 야간 ${rec.night || 0}h)`);
     }
 
+    const STORAGE_HIDE_SPECIAL_KEY = 'payroll_hide_special_v1';
+    function applySpecialRowVisibility() {
+      const hidden = localStorage.getItem(STORAGE_HIDE_SPECIAL_KEY) === '1';
+      const row = document.getElementById('row-special');
+      const btn = document.getElementById('btn-toggle-special');
+      const vSpan = document.getElementById('val-voucher');
+      if (row) row.classList.toggle('hidden', hidden);
+      if (btn) {
+        btn.textContent = hidden ? '＋ 특별근로' : '특별근로 숨김';
+        btn.classList.toggle('bg-emerald-600', hidden);
+        btn.classList.toggle('bg-slate-600', !hidden);
+      }
+      if (vSpan && vSpan.parentElement && vSpan.parentElement.firstChild) {
+        vSpan.parentElement.firstChild.nodeValue = hidden ? '3. 상품권 ' : '4. 상품권 ';
+      }
+    }
+    function toggleSpecialRow() {
+      const hidden = localStorage.getItem(STORAGE_HIDE_SPECIAL_KEY) === '1';
+      localStorage.setItem(STORAGE_HIDE_SPECIAL_KEY, hidden ? '0' : '1');
+      applySpecialRowVisibility();
+    }
+
     function adjustVoucher(delta) {
       const rec = getRec(selectedDate);
       rec.voucher = Math.max(0, (rec.voucher || 0) + delta);
@@ -1911,12 +1940,22 @@
       }
 
       setClockPendingUI(rec.start, rec.end, false);
-      document.getElementById('val-early').textContent = `${rec.early || 0}h`;
-      document.getElementById('val-overtime').textContent = `${rec.overtime || 0}h`;
-      document.getElementById('val-night').textContent = `${rec.night || 0}h (${fmt(nightAmt)})`;
-      document.getElementById('val-holiday').textContent = `${rec.holiday || 0}h`;
-      document.getElementById('val-special').textContent = `${rec.special || 0}h (${fmt(calcSpecialPayRaw(rec.special))})`;
-      document.getElementById('val-voucher').textContent = fmt(rec.voucher || 0);
+      const fmtHoursPay = (h, amt) => {
+        const hrs = h || 0;
+        if (hrs <= 0) return '';
+        return amt > 0 ? `${hrs}h (+${fmt(amt)})` : `${hrs}h`;
+      };
+      const earlyAmt = Math.round((rec.early || 0) * cfg.hourly * APP_DEFAULTS.overtimeRate);
+      const overAmt = Math.round((rec.overtime || 0) * cfg.hourly * APP_DEFAULTS.overtimeRate);
+      const holAmt = Math.round((rec.holiday || 0) * cfg.hourly * APP_DEFAULTS.holidayRate);
+      const specAmt = calcSpecialPayRaw(rec.special || 0);
+
+      document.getElementById('val-early').textContent = fmtHoursPay(rec.early, earlyAmt);
+      document.getElementById('val-overtime').textContent = fmtHoursPay(rec.overtime, overAmt);
+      document.getElementById('val-night').textContent = fmtHoursPay(rec.night, nightAmt);
+      document.getElementById('val-holiday').textContent = fmtHoursPay(rec.holiday, holAmt);
+      document.getElementById('val-special').textContent = fmtHoursPay(rec.special, specAmt);
+      document.getElementById('val-voucher').textContent = (rec.voucher || 0) > 0 ? fmt(rec.voucher) : '';
 
       document.getElementById('fixed-pay-label').textContent = `고정급 ${fmt(t.fixedSum)}`;
       document.getElementById('st-ext-h').textContent = `${t.earlyH + t.overH}h (조${t.earlyH}+잔${t.overH})`;
@@ -2419,6 +2458,78 @@
       closeModal('edit-modal');
       renderAll();
       showToast(`${modalDate} 삭제됨`);
+    }
+
+    function copySalaryConfig() {
+      const data = {
+        label: (document.getElementById('cfg-label').value || '').trim(),
+        basePay: Math.max(0, Number(document.getElementById('cfg-base').value) || 0),
+        posPay: Math.max(0, Number(document.getElementById('cfg-pos').value) || 0),
+        hourly: Math.max(0, Number(document.getElementById('cfg-hourly').value) || 0),
+        fixedIns: Math.max(0, Number(document.getElementById('cfg-ins').value) || 0),
+        estTax: Math.max(0, Number(document.getElementById('cfg-tax').value) || 0)
+      };
+      const text = JSON.stringify(data);
+      const done = () => showToast('급여 기준 모두 복사 완료! 새 파일에서 [붙여넣기 적용]을 눌러주세요.');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => {
+          const ta = document.createElement('textarea');
+          ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); done(); } catch(e) { prompt('아래 코드를 복사해 두세요:', text); }
+          ta.remove();
+        });
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch(e) { prompt('아래 코드를 복사해 두세요:', text); }
+        ta.remove();
+      }
+    }
+
+    function applyPastedSalaryConfig(raw) {
+      if (!raw || !raw.trim()) return;
+      try {
+        const parsed = JSON.parse(raw.trim());
+        if (typeof parsed !== 'object' || parsed === null) throw new Error('invalid');
+        document.getElementById('cfg-label').value = parsed.label || '';
+        document.getElementById('cfg-base').value = Math.max(0, Number(parsed.basePay) || 0);
+        document.getElementById('cfg-pos').value = Math.max(0, Number(parsed.posPay) || 0);
+        document.getElementById('cfg-hourly').value = Math.max(0, Number(parsed.hourly) || 0);
+        document.getElementById('cfg-ins').value = Math.max(0, Number(parsed.fixedIns) || 0);
+        document.getElementById('cfg-tax').value = Math.max(0, Number(parsed.estTax) || 0);
+        cfg.label = (parsed.label || '').trim() || DEFAULT_CFG.label;
+        cfg.basePay = Math.max(0, Number(parsed.basePay) || 0);
+        cfg.posPay = Math.max(0, Number(parsed.posPay) || 0);
+        cfg.hourly = Math.max(0, Number(parsed.hourly) || 0);
+        cfg.fixedIns = Math.max(0, Number(parsed.fixedIns) || 0);
+        cfg.estTax = Math.max(0, Number(parsed.estTax) || 0);
+        safeSet(STORAGE_CFG_KEY, cfg);
+        renderAll();
+        showToast('급여 기준 붙여넣기 및 저장 완료!');
+      } catch (e) {
+        showToast('복사한 급여 기준 형식이 올바르지 않습니다.');
+      }
+    }
+
+    function pasteSalaryConfig() {
+      if (navigator.clipboard && navigator.clipboard.readText) {
+        navigator.clipboard.readText().then(txt => {
+          if (txt && txt.trim().startsWith('{')) {
+            applyPastedSalaryConfig(txt);
+          } else {
+            const manual = prompt('복사해 둔 급여 기준 코드를 붙여넣어 주세요:');
+            if (manual) applyPastedSalaryConfig(manual);
+          }
+        }).catch(() => {
+          const manual = prompt('복사해 둔 급여 기준 코드를 붙여넣어 주세요:');
+          if (manual) applyPastedSalaryConfig(manual);
+        });
+      } else {
+        const manual = prompt('복사해 둔 급여 기준 코드를 붙여넣어 주세요:');
+        if (manual) applyPastedSalaryConfig(manual);
+      }
     }
 
     function saveConfig(goHomeAfter) {
@@ -3226,6 +3337,7 @@
     applyAppTheme();
     initManifest();
     buildDates();
+    applySpecialRowVisibility();
     runSavedDevPatch();
     updateLiveClock();
     setInterval(updateLiveClock, 1000);
